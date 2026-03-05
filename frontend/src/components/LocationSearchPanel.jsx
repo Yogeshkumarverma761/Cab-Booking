@@ -8,8 +8,9 @@ const LocationSearchPanel = ({ suggestions, setVehiclePanel, setPanelOpen, setPi
         } else if (activeField === 'destination') {
             setDestination(suggestion)
         }
-        // setVehiclePanel(true)
-        // setPanelOpen(false)
+        // After selecting a location, close the suggestions panel and open vehicle selection
+        setVehiclePanel(true);
+        setPanelOpen(false);
     }
 
     return (

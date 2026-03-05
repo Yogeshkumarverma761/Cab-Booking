@@ -237,7 +237,7 @@ const Home = () => {
                                 <div className='w-[1px] h-10 bg-gradient-to-b from-primary to-transparent' />
                             </div>
                             <input
-                                onClick={() => {
+                                onFocus={() => {
                                     setPanelOpen(true)
                                     setActiveField('pickup')
                                 }}
@@ -254,7 +254,7 @@ const Home = () => {
                                 <i className="ri-map-pin-2-fill text-xl text-white/40"></i>
                             </div>
                             <input
-                                onClick={() => {
+                                onFocus={() => {
                                     setPanelOpen(true)
                                     setActiveField('destination')
                                 }}
