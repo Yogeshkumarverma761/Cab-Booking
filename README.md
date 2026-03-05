@@ -1,4 +1,4 @@
-# Cab Booking Application
+# QuickCab - Cab Booking Application
 
 A full-stack Cab Booking application built with the MERN stack (MongoDB, Express, React, Node.js) and Socket.io for real-time tracking.
 
