@@ -216,7 +216,7 @@ const Home = () => {
 
             {/* Interactive Search Panel */}
             <div className='absolute inset-0 pointer-events-none flex flex-col justify-end px-4 pb-6'>
-                <div className='glass-dark w-full max-w-lg mx-auto rounded-[2.5rem] p-6 pointer-events-auto border-white/10 shadow-2xl relative overflow-hidden'>
+                <div className='glass-dark w-full max-w-lg mx-auto rounded-[2.5rem] p-6 pointer-events-auto border-white/10 shadow-2xl relative overflow-hidden z-[120]'>
                     <div className='absolute top-2 left-1/2 -translate-x-1/2 w-12 h-1 bg-white/20 rounded-full' />
 
                     <div className='flex items-center justify-between mb-6 pt-2'>
