@@ -1,6 +1,7 @@
 {
   "name": "frontend",
   "private": true,
+  "author": "Yogesh-Kumar-verma",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
