@@ -1,0 +1,12 @@
+{
+    "name": "cab-booking-app",
+    "version": "1.0.0",
+    "scripts": {
+        "install:backend": "cd Backend && npm install",
+        "install:frontend": "cd frontend && npm install",
+        "install:all": "npm run install:backend && npm run install:frontend",
+        "start:backend": "cd Backend && npm start",
+        "start:frontend": "cd frontend && npm run dev",
+        "build:frontend": "cd frontend && npm run build"
+    }
+}

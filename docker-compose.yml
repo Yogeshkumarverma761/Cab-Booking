@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - DB_CONNECT=${DB_CONNECT}
+      - JWT_SECRET=${JWT_SECRET}
+      - GOOGLE_MAPS_API=${GOOGLE_MAPS_API}
+      - VITE_BASE_URL=http://localhost:3000
+      - VITE_GOOGLE_MAPS_API_KEY=${GOOGLE_MAPS_API}
+    restart: always
+
+# Note: You can add a mongo service here if you want to run it locally
+# mongodb:
+#   image: mongo:latest
+#   ports:
+#     - "27017:27017"
