@@ -1,6 +1,7 @@
 {
     "name": "cab-booking-app",
     "version": "1.0.0",
+    "author": "Yogesh-Kumar-verma",
     "scripts": {
         "install:backend": "cd Backend && npm install",
         "install:frontend": "cd frontend && npm install",
