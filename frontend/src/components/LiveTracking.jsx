@@ -91,10 +91,6 @@ const LiveTracking = () => {
             >
                 <Marker
                     position={currentPosition}
-                    icon={{
-                        url: "https://cdn-icons-png.flaticon.com/512/3082/3082383.png", // Custom premium pin
-                        scaledSize: new window.google.maps.Size(40, 40)
-                    }}
                 />
             </GoogleMap>
         </LoadScript>

@@ -40,6 +40,11 @@ const Home = () => {
     const { socket } = useContext(SocketContext)
     const { user } = useContext(UserDataContext)
 
+    // Guard: ensure user data is loaded before using it
+    if (!user || !user._id) {
+        return <div className='flex items-center justify-center h-screen text-white'>Loading...</div>
+    }
+
     useEffect(() => {
         socket.emit("join", { userType: "user", userId: user._id })
     }, [user])
