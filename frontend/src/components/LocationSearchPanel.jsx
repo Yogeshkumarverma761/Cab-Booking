@@ -13,16 +13,30 @@ const LocationSearchPanel = ({ suggestions, setVehiclePanel, setPanelOpen, setPi
     }
 
     return (
-        <div>
-            {/* Display fetched suggestions */}
-            {
+        <div className='space-y-4 max-h-[60vh] overflow-y-auto pr-2'>
+            {suggestions.length === 0 ? (
+                <div className='flex flex-col items-center justify-center py-20 opacity-20'>
+                    <i className="ri-search-line text-6xl mb-4"></i>
+                    <p className='text-sm uppercase tracking-widest'>Start typing to search</p>
+                </div>
+            ) : (
                 suggestions.map((elem, idx) => (
-                    <div key={idx} onClick={() => handleSuggestionClick(elem)} className='flex gap-4 border-2 p-3 border-gray-50 active:border-black rounded-xl items-center my-2 justify-start'>
-                        <h2 className='bg-[#eee] h-8 flex items-center justify-center w-12 rounded-full'><i className="ri-map-pin-fill"></i></h2>
-                        <h4 className='font-medium'>{elem}</h4>
+                    <div
+                        key={idx}
+                        onClick={() => handleSuggestionClick(elem)}
+                        className='group flex gap-5 p-4 bg-white/5 border border-white/5 hover:border-primary/30 hover:bg-white/10 rounded-2xl items-center cursor-pointer transition-all duration-300 active:scale-[0.98]'
+                    >
+                        <div className='flex-shrink-0 w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-colors'>
+                            <i className="ri-map-pin-fill text-primary text-xl"></i>
+                        </div>
+                        <div className='flex flex-col'>
+                            <h4 className='text-white font-semibold text-base line-clamp-1'>{elem}</h4>
+                            <p className='text-white/40 text-xs uppercase tracking-wider'>Location Point</p>
+                        </div>
+                        <i className="ri-arrow-right-s-line ml-auto text-white/20 group-hover:text-primary transition-colors"></i>
                     </div>
                 ))
-            }
+            )}
         </div>
     )
 }

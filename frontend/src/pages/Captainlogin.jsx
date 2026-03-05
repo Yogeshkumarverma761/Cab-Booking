@@ -36,49 +36,66 @@ const Captainlogin = () => {
     setPassword('')
   }
   return (
-    <div className='p-7 h-screen flex flex-col justify-between'>
-      <div>
-        <img className='w-20 mb-3' src="/logo.png" alt="QuickCab Logo" />
+    <div className='h-screen w-full relative overflow-hidden bg-black font-["Outfit"] p-7 flex flex-col justify-between'>
+      {/* Background Decor */}
+      <div className='absolute -top-24 -left-24 w-64 h-64 bg-primary/20 rounded-full blur-[100px] pointer-events-none' />
+      <div className='absolute -bottom-24 -right-24 w-64 h-64 bg-primary/10 rounded-full blur-[100px] pointer-events-none' />
 
-        <form onSubmit={(e) => {
-          submitHandler(e)
-        }}>
-          <h3 className='text-lg font-medium mb-2'>What's your email</h3>
-          <input
-            required
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value)
-            }}
-            className='bg-[#eeeeee] mb-7 rounded-lg px-4 py-2 border w-full text-lg placeholder:text-base'
-            type="email"
-            placeholder='email@example.com'
-          />
+      <div className='relative z-10'>
+        <div className='flex flex-col items-center mb-10'>
+          <img className='w-24 mb-4 animate-float' src="/logo.png" alt="QuickCab Logo" />
+          <h2 className='text-3xl font-bold text-white uppercase tracking-tight'>Captain Portal</h2>
+          <p className='text-muted-foreground text-sm text-center'>Ready to take the wheel? Sign in to start earning.</p>
+        </div>
 
-          <h3 className='text-lg font-medium mb-2'>Enter Password</h3>
+        <form onSubmit={(e) => submitHandler(e)} className='space-y-6'>
+          <div className='space-y-2'>
+            <label className='text-sm font-semibold text-white/70 ml-1'>Captain Email</label>
+            <input
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className='bg-white/5 border border-white/10 rounded-2xl px-5 py-4 w-full text-white placeholder:text-white/20 focus:bg-white/10 active:scale-[0.99] transition-all'
+              type="email"
+              placeholder='captain@quickcab.com'
+            />
+          </div>
 
-          <input
-            className='bg-[#eeeeee] mb-7 rounded-lg px-4 py-2 border w-full text-lg placeholder:text-base'
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value)
-            }}
-            required type="password"
-            placeholder='password'
-          />
+          <div className='space-y-2'>
+            <label className='text-sm font-semibold text-white/70 ml-1'>Secret Password</label>
+            <input
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className='bg-white/5 border border-white/10 rounded-2xl px-5 py-4 w-full text-white placeholder:text-white/20 focus:bg-white/10 active:scale-[0.99] transition-all'
+              type="password"
+              placeholder='••••••••'
+            />
+          </div>
 
-          <button
-            className='bg-[#111] text-white font-semibold mb-3 rounded-lg px-4 py-2 w-full text-lg placeholder:text-base'
-          >Login</button>
-
+          <button className='btn-primary w-full py-4 text-lg mt-2'>
+            Captain Login
+          </button>
         </form>
-        <p className='text-center'>Join a fleet? <Link to='/captain-signup' className='text-blue-600'>Register as a Captain</Link></p>
+
+        <p className='text-center mt-8 text-white/60 text-sm'>
+          Want to join the fleet? <Link to='/captain-signup' className='text-primary font-bold hover:underline'>Register Now</Link>
+        </p>
       </div>
-      <div>
+
+      <div className='relative z-10 space-y-4'>
+        <div className='flex items-center gap-4 text-white/20'>
+          <div className='h-[1px] w-full bg-current' />
+          <span className='text-[10px] uppercase tracking-[0.3em] whitespace-nowrap'>Passenger Access</span>
+          <div className='h-[1px] w-full bg-current' />
+        </div>
         <Link
           to='/login'
-          className='bg-[#d5622d] flex items-center justify-center text-white font-semibold mb-5 rounded-lg px-4 py-2 w-full text-lg placeholder:text-base'
-        >Sign in as User</Link>
+          className='btn-secondary w-full py-4 flex items-center justify-center gap-2'
+        >
+          <i className="ri-user-fill text-xl"></i>
+          Sign in as User
+        </Link>
       </div>
     </div>
   )

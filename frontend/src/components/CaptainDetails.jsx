@@ -7,34 +7,50 @@ const CaptainDetails = () => {
     const { captain } = useContext(CaptainDataContext)
 
     return (
-        <div>
-            <div className='flex items-center justify-between'>
-                <div className='flex items-center justify-start gap-3'>
-                    <img className='h-10 w-10 rounded-full object-cover' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdlMd7stpWUCmjpfRjUsQ72xSWikidbgaI1w&s" alt="" />
-                    <h4 className='text-lg font-medium capitalize'>{captain.fullname.firstname + " " + captain.fullname.lastname}</h4>
+        <div className='font-["Outfit"]'>
+            <div className='flex items-center justify-between mb-8'>
+                <div className='flex items-center gap-4'>
+                    <div className='w-16 h-16 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center overflow-hidden relative'>
+                        <img className='w-full h-full object-cover' src="https://images.unsplash.com/photo-1540560085022-d8c50a4d1a08?q=80&w=2576&auto=format&fit=crop" alt="Captain" />
+                    </div>
+                    <div>
+                        <h4 className='text-xl font-bold text-white capitalize'>{captain.fullname.firstname + " " + captain.fullname.lastname}</h4>
+                        <div className='flex items-center gap-2 mt-1'>
+                            <span className='w-2 h-2 rounded-full bg-green-500 animate-pulse'></span>
+                            <p className='text-white/40 text-xs font-bold uppercase tracking-widest'>Active Status</p>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <h4 className='text-xl font-semibold'>₹295.20</h4>
-                    <p className='text-sm text-gray-600'>Earned</p>
+                <div className='text-right'>
+                    <h4 className='text-2xl font-black text-primary tracking-tighter'>₹295</h4>
+                    <p className='text-[10px] text-white/40 font-bold uppercase tracking-[0.2em]'>Today's Earnings</p>
                 </div>
             </div>
-            <div className='flex p-3 mt-8 bg-gray-100 rounded-xl justify-center gap-5 items-start'>
-                <div className='text-center'>
-                    <i className="text-3xl mb-2 font-thin ri-timer-2-line"></i>
-                    <h5 className='text-lg font-medium'>10.2</h5>
-                    <p className='text-sm text-gray-600'>Hours Online</p>
-                </div>
-                <div className='text-center'>
-                    <i className="text-3xl mb-2 font-thin ri-speed-up-line"></i>
-                    <h5 className='text-lg font-medium'>10.2</h5>
-                    <p className='text-sm text-gray-600'>Hours Online</p>
-                </div>
-                <div className='text-center'>
-                    <i className="text-3xl mb-2 font-thin ri-booklet-line"></i>
-                    <h5 className='text-lg font-medium'>10.2</h5>
-                    <p className='text-sm text-gray-600'>Hours Online</p>
+
+            <div className='grid grid-cols-3 gap-4'>
+                <div className='glass-dark p-4 rounded-3xl border-white/5 text-center group hover:bg-white/10 transition-all'>
+                    <div className='w-10 h-10 bg-primary/5 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform'>
+                        <i className="text-xl text-primary ri-timer-2-line"></i>
+                    </div>
+                    <h5 className='text-lg font-bold text-white'>10.2</h5>
+                    <p className='text-[9px] text-white/30 font-bold uppercase tracking-widest'>Hours</p>
                 </div>
 
+                <div className='glass-dark p-4 rounded-3xl border-white/5 text-center group hover:bg-white/10 transition-all'>
+                    <div className='w-10 h-10 bg-primary/5 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform'>
+                        <i className="text-xl text-primary ri-speed-up-line"></i>
+                    </div>
+                    <h5 className='text-lg font-bold text-white'>32.4</h5>
+                    <p className='text-[9px] text-white/30 font-bold uppercase tracking-widest'>KM/h</p>
+                </div>
+
+                <div className='glass-dark p-4 rounded-3xl border-white/5 text-center group hover:bg-white/10 transition-all'>
+                    <div className='w-10 h-10 bg-primary/5 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform'>
+                        <i className="text-xl text-primary ri-booklet-line"></i>
+                    </div>
+                    <h5 className='text-lg font-bold text-white'>18</h5>
+                    <p className='text-[9px] text-white/30 font-bold uppercase tracking-widest'>Rides</p>
+                </div>
             </div>
         </div>
     )

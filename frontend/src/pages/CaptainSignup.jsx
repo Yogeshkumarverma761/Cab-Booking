@@ -59,121 +59,118 @@ const CaptainSignup = () => {
 
   }
   return (
-    <div className='py-5 px-5 h-screen flex flex-col justify-between'>
-      <div>
-        <img className='w-20 mb-3' src="/logo.png" alt="QuickCab Logo" />
+    <div className='min-h-screen w-full relative overflow-y-auto bg-black font-["Outfit"] p-7 flex flex-col justify-between'>
+      {/* Background Decor */}
+      <div className='absolute -top-24 -right-24 w-64 h-64 bg-primary/20 rounded-full blur-[100px] pointer-events-none' />
+      <div className='absolute bottom-1/2 -left-24 w-64 h-64 bg-primary/10 rounded-full blur-[100px] pointer-events-none' />
 
-        <form onSubmit={(e) => {
-          submitHandler(e)
-        }}>
+      <div className='relative z-10'>
+        <div className='flex flex-col items-center mb-10'>
+          <img className='w-24 mb-4 animate-float' src="/logo.png" alt="QuickCab Logo" />
+          <h2 className='text-3xl font-bold text-white uppercase tracking-tight'>Captain Signup</h2>
+          <p className='text-muted-foreground text-sm text-center'>Join the most premium fleet in the city.</p>
+        </div>
 
-          <h3 className='text-lg w-full  font-medium mb-2'>What's our Captain's name</h3>
-          <div className='flex gap-4 mb-7'>
+        <form onSubmit={(e) => submitHandler(e)} className='space-y-6'>
+          <div className='space-y-4'>
+            <label className='text-sm font-semibold text-white/70 ml-1'>Full Name</label>
+            <div className='flex gap-4'>
+              <input
+                required
+                className='bg-white/5 border border-white/10 rounded-2xl px-5 py-4 w-1/2 text-white placeholder:text-white/20 focus:bg-white/10 transition-all'
+                type="text"
+                placeholder='First name'
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+              <input
+                required
+                className='bg-white/5 border border-white/10 rounded-2xl px-5 py-4 w-1/2 text-white placeholder:text-white/20 focus:bg-white/10 transition-all'
+                type="text"
+                placeholder='Last name'
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+              />
+            </div>
+          </div>
+
+          <div className='space-y-4'>
+            <label className='text-sm font-semibold text-white/70 ml-1'>Contact & Security</label>
             <input
               required
-              className='bg-[#eeeeee] w-1/2 rounded-lg px-4 py-2 border  text-lg placeholder:text-base'
-              type="text"
-              placeholder='First name'
-              value={firstName}
-              onChange={(e) => {
-                setFirstName(e.target.value)
-              }}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className='bg-white/5 border border-white/10 rounded-2xl px-5 py-4 w-full text-white placeholder:text-white/20 focus:bg-white/10 transition-all mb-4'
+              type="email"
+              placeholder='captain@quickcab.com'
             />
             <input
               required
-              className='bg-[#eeeeee] w-1/2  rounded-lg px-4 py-2 border  text-lg placeholder:text-base'
-              type="text"
-              placeholder='Last name'
-              value={lastName}
-              onChange={(e) => {
-                setLastName(e.target.value)
-              }}
+              className='bg-white/5 border border-white/10 rounded-2xl px-5 py-4 w-full text-white placeholder:text-white/20 focus:bg-white/10 transition-all'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              placeholder='Secure Password'
             />
           </div>
 
-          <h3 className='text-lg font-medium mb-2'>What's our Captain's email</h3>
-          <input
-            required
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value)
-            }}
-            className='bg-[#eeeeee] mb-7 rounded-lg px-4 py-2 border w-full text-lg placeholder:text-base'
-            type="email"
-            placeholder='email@example.com'
-          />
-
-          <h3 className='text-lg font-medium mb-2'>Enter Password</h3>
-
-          <input
-            className='bg-[#eeeeee] mb-7 rounded-lg px-4 py-2 border w-full text-lg placeholder:text-base'
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value)
-            }}
-            required type="password"
-            placeholder='password'
-          />
-
-          <h3 className='text-lg font-medium mb-2'>Vehicle Information</h3>
-          <div className='flex gap-4 mb-7'>
-            <input
-              required
-              className='bg-[#eeeeee] w-1/2 rounded-lg px-4 py-2 border text-lg placeholder:text-base'
-              type="text"
-              placeholder='Vehicle Color'
-              value={vehicleColor}
-              onChange={(e) => {
-                setVehicleColor(e.target.value)
-              }}
-            />
-            <input
-              required
-              className='bg-[#eeeeee] w-1/2 rounded-lg px-4 py-2 border text-lg placeholder:text-base'
-              type="text"
-              placeholder='Vehicle Plate'
-              value={vehiclePlate}
-              onChange={(e) => {
-                setVehiclePlate(e.target.value)
-              }}
-            />
-          </div>
-          <div className='flex gap-4 mb-7'>
-            <input
-              required
-              className='bg-[#eeeeee] w-1/2 rounded-lg px-4 py-2 border text-lg placeholder:text-base'
-              type="number"
-              placeholder='Vehicle Capacity'
-              value={vehicleCapacity}
-              onChange={(e) => {
-                setVehicleCapacity(e.target.value)
-              }}
-            />
-            <select
-              required
-              className='bg-[#eeeeee] w-1/2 rounded-lg px-4 py-2 border text-lg placeholder:text-base'
-              value={vehicleType}
-              onChange={(e) => {
-                setVehicleType(e.target.value)
-              }}
-            >
-              <option value="" disabled>Select Vehicle Type</option>
-              <option value="car">Car</option>
-              <option value="auto">Auto</option>
-              <option value="moto">Moto</option>
-            </select>
+          <div className='space-y-4'>
+            <label className='text-sm font-semibold text-white/70 ml-1'>Vehicle Details</label>
+            <div className='flex gap-4'>
+              <input
+                required
+                className='bg-white/5 border border-white/10 rounded-2xl px-5 py-4 w-1/2 text-white placeholder:text-white/20 focus:bg-white/10 transition-all'
+                type="text"
+                placeholder='Color'
+                value={vehicleColor}
+                onChange={(e) => setVehicleColor(e.target.value)}
+              />
+              <input
+                required
+                className='bg-white/5 border border-white/10 rounded-2xl px-5 py-4 w-1/2 text-white placeholder:text-white/20 focus:bg-white/10 transition-all'
+                type="text"
+                placeholder='Plate Number'
+                value={vehiclePlate}
+                onChange={(e) => setVehiclePlate(e.target.value)}
+              />
+            </div>
+            <div className='flex gap-4'>
+              <input
+                required
+                className='bg-white/5 border border-white/10 rounded-2xl px-5 py-4 w-1/2 text-white placeholder:text-white/20 focus:bg-white/10 transition-all'
+                type="number"
+                placeholder='Capacity'
+                value={vehicleCapacity}
+                onChange={(e) => setVehicleCapacity(e.target.value)}
+              />
+              <select
+                required
+                className='bg-white/5 border border-white/10 rounded-2xl px-5 py-4 w-1/2 text-white/40 focus:bg-white/10 transition-all'
+                value={vehicleType}
+                onChange={(e) => setVehicleType(e.target.value)}
+              >
+                <option value="" disabled className='bg-black'>Type</option>
+                <option value="car" className='bg-black'>Car</option>
+                <option value="auto" className='bg-black'>Auto</option>
+                <option value="moto" className='bg-black'>Moto</option>
+              </select>
+            </div>
           </div>
 
-          <button
-            className='bg-[#111] text-white font-semibold mb-3 rounded-lg px-4 py-2 w-full text-lg placeholder:text-base'
-          >Create Captain Account</button>
-
+          <button className='btn-primary w-full py-4 text-lg mt-4'>
+            Complete Registration
+          </button>
         </form>
-        <p className='text-center'>Already have a account? <Link to='/captain-login' className='text-blue-600'>Login here</Link></p>
+
+        <p className='text-center mt-8 text-white/60 text-sm'>
+          Already a Captain? <Link to='/captain-login' className='text-primary font-bold hover:underline'>Login here</Link>
+        </p>
       </div>
-      <div>
-        <p className='text-[10px] mt-6 leading-tight'>This site is protected by reCAPTCHA and the <span className='underline'>Google Privacy
-          Policy</span> and <span className='underline'>Terms of Service apply</span>.</p>
+
+      <div className='relative z-10 mt-10 text-center'>
+        <p className='text-[10px] text-white/20 leading-tight uppercase tracking-[0.2em]'>
+          By registering, you agree to our <span className='text-white/40 border-b border-white/20'>Privacy Policy</span> <br /> & <span className='text-white/40 border-b border-white/20'>Fleet Terms of Service</span>
+        </p>
       </div>
     </div>
   )

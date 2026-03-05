@@ -49,76 +49,81 @@ const UserSignup = () => {
 
   }
   return (
-    <div>
-      <div className='p-7 h-screen flex flex-col justify-between'>
-        <div>
-          <img className='w-16 mb-10' src="/logo.png" alt="QuickCab Logo" />
+    <div className='h-screen w-full relative overflow-hidden bg-black font-["Outfit"] p-7 flex flex-col justify-between'>
+      {/* Background Decor */}
+      <div className='absolute -top-24 -right-24 w-64 h-64 bg-primary/20 rounded-full blur-[100px] pointer-events-none' />
+      <div className='absolute -bottom-24 -left-24 w-64 h-64 bg-primary/10 rounded-full blur-[100px] pointer-events-none' />
 
-          <form onSubmit={(e) => {
-            submitHandler(e)
-          }}>
+      <div className='relative z-10'>
+        <div className='flex flex-col items-center mb-8'>
+          <img className='w-16 mb-4 animate-float' src="/logo.png" alt="QuickCab Logo" />
+          <h2 className='text-3xl font-bold text-white uppercase tracking-tight'>Create Account</h2>
+          <p className='text-muted-foreground text-sm text-center'>Start your journey with QuickCab today</p>
+        </div>
 
-            <h3 className='text-lg w-1/2  font-medium mb-2'>What's your name</h3>
-            <div className='flex gap-4 mb-7'>
+        <form onSubmit={(e) => submitHandler(e)} className='space-y-4'>
+          <div className='space-y-2'>
+            <label className='text-sm font-semibold text-white/70 ml-1'>What's your name?</label>
+            <div className='flex gap-4'>
               <input
                 required
-                className='bg-[#eeeeee] w-1/2 rounded-lg px-4 py-2 border  text-lg placeholder:text-base'
+                className='bg-white/5 border border-white/10 rounded-2xl px-5 py-4 w-1/2 text-white placeholder:text-white/20 focus:bg-white/10 active:scale-[0.99] transition-all'
                 type="text"
                 placeholder='First name'
                 value={firstName}
-                onChange={(e) => {
-                  setFirstName(e.target.value)
-                }}
+                onChange={(e) => setFirstName(e.target.value)}
               />
               <input
                 required
-                className='bg-[#eeeeee] w-1/2  rounded-lg px-4 py-2 border  text-lg placeholder:text-base'
+                className='bg-white/5 border border-white/10 rounded-2xl px-5 py-4 w-1/2 text-white placeholder:text-white/20 focus:bg-white/10 active:scale-[0.99] transition-all'
                 type="text"
                 placeholder='Last name'
                 value={lastName}
-                onChange={(e) => {
-                  setLastName(e.target.value)
-                }}
+                onChange={(e) => setLastName(e.target.value)}
               />
             </div>
+          </div>
 
-            <h3 className='text-lg font-medium mb-2'>What's your email</h3>
+          <div className='space-y-2'>
+            <label className='text-sm font-semibold text-white/70 ml-1'>Email Address</label>
             <input
               required
               value={email}
-              onChange={(e) => {
-                setEmail(e.target.value)
-              }}
-              className='bg-[#eeeeee] mb-7 rounded-lg px-4 py-2 border w-full text-lg placeholder:text-base'
+              onChange={(e) => setEmail(e.target.value)}
+              className='bg-white/5 border border-white/10 rounded-2xl px-5 py-4 w-full text-white placeholder:text-white/20 focus:bg-white/10 active:scale-[0.99] transition-all'
               type="email"
-              placeholder='email@example.com'
+              placeholder='alex@quickcab.com'
             />
+          </div>
 
-            <h3 className='text-lg font-medium mb-2'>Enter Password</h3>
-
+          <div className='space-y-2'>
+            <label className='text-sm font-semibold text-white/70 ml-1'>Password</label>
             <input
-              className='bg-[#eeeeee] mb-7 rounded-lg px-4 py-2 border w-full text-lg placeholder:text-base'
+              required
               value={password}
-              onChange={(e) => {
-                setPassword(e.target.value)
-              }}
-              required type="password"
-              placeholder='password'
+              onChange={(e) => setPassword(e.target.value)}
+              className='bg-white/5 border border-white/10 rounded-2xl px-5 py-4 w-full text-white placeholder:text-white/20 focus:bg-white/10 active:scale-[0.99] transition-all'
+              type="password"
+              placeholder='••••••••'
             />
+          </div>
 
-            <button
-              className='bg-[#111] text-white font-semibold mb-3 rounded-lg px-4 py-2 w-full text-lg placeholder:text-base'
-            >Create account</button>
+          <button className='btn-primary w-full py-4 text-lg mt-4'>
+            Create Account
+          </button>
+        </form>
 
-          </form>
-          <p className='text-center'>Already have a account? <Link to='/login' className='text-blue-600'>Login here</Link></p>
-        </div>
-        <div>
-          <p className='text-[10px] leading-tight'>This site is protected by reCAPTCHA and the <span className='underline'>Google Privacy
-            Policy</span> and <span className='underline'>Terms of Service apply</span>.</p>
-        </div>
+        <p className='text-center mt-6 text-white/60 text-sm'>
+          Already have an account? <Link to='/login' className='text-primary font-bold hover:underline'>Login here</Link>
+        </p>
       </div>
-    </div >
+
+      <div className='relative z-10'>
+        <p className='text-[10px] text-white/30 text-center leading-tight px-4'>
+          By signing up, you agree to the <span className='underline'>Privacy Policy</span> and <span className='underline'>Terms of Service</span>.
+        </p>
+      </div>
+    </div>
   )
 }
 

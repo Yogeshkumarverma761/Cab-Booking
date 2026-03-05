@@ -198,53 +198,82 @@ const Home = () => {
     }
 
     return (
-        <div className='h-screen relative overflow-hidden'>
-            <img className='w-16 absolute left-5 top-5' src="/logo.png" alt="QuickCab Logo" />
-            <div className='h-screen w-screen'>
-                {/* image for temporary use  */}
+        <div className='h-screen w-full relative overflow-hidden bg-black font-["Outfit"]'>
+            {/* Logo Overlay */}
+            <div className='absolute left-8 top-8 z-[100] flex items-center gap-3 animate-float'>
+                <img className='w-12 drop-shadow-[0_0_15px_rgba(255,215,0,0.3)]' src="/logo.png" alt="QuickCab Logo" />
+            </div>
+
+            {/* Map Container */}
+            <div className='h-full w-full grayscale-[0.5] contrast-[1.2] brightness-[0.8]'>
                 <LiveTracking />
             </div>
-            <div className=' flex flex-col justify-end h-screen absolute top-0 w-full'>
-                <div className='h-[30%] p-6 bg-white relative'>
-                    <h5 ref={panelCloseRef} onClick={() => {
-                        setPanelOpen(false)
-                    }} className='absolute opacity-0 right-6 top-6 text-2xl'>
-                        <i className="ri-arrow-down-wide-line"></i>
-                    </h5>
-                    <h4 className='text-2xl font-semibold'>Find a trip</h4>
-                    <form className='relative py-3' onSubmit={(e) => {
-                        submitHandler(e)
-                    }}>
-                        <div className="line absolute h-16 w-1 top-[50%] -translate-y-1/2 left-5 bg-gray-700 rounded-full"></div>
-                        <input
-                            onClick={() => {
-                                setPanelOpen(true)
-                                setActiveField('pickup')
-                            }}
-                            value={pickup}
-                            onChange={handlePickupChange}
-                            className='bg-[#eee] px-12 py-2 text-lg rounded-lg w-full'
-                            type="text"
-                            placeholder='Add a pick-up location'
-                        />
-                        <input
-                            onClick={() => {
-                                setPanelOpen(true)
-                                setActiveField('destination')
-                            }}
-                            value={destination}
-                            onChange={handleDestinationChange}
-                            className='bg-[#eee] px-12 py-2 text-lg rounded-lg w-full  mt-3'
-                            type="text"
-                            placeholder='Enter your destination' />
+
+            {/* Interactive Search Panel */}
+            <div className='absolute inset-0 pointer-events-none flex flex-col justify-end px-4 pb-6'>
+                <div className='glass-dark w-full max-w-lg mx-auto rounded-[2.5rem] p-6 pointer-events-auto border-white/10 shadow-2xl relative overflow-hidden'>
+                    <div className='absolute top-2 left-1/2 -translate-x-1/2 w-12 h-1 bg-white/20 rounded-full' />
+
+                    <div className='flex items-center justify-between mb-6 pt-2'>
+                        <h4 className='text-2xl font-bold text-white tracking-tight'>Find a <span className='text-primary'>Trip</span></h4>
+                        <button
+                            ref={panelCloseRef}
+                            onClick={() => setPanelOpen(false)}
+                            className='w-10 h-10 rounded-full bg-white/5 flex items-center justify-center opacity-0 hover:bg-white/10 transition-colors'
+                        >
+                            <i className="ri-arrow-down-wide-line text-white/60 text-xl"></i>
+                        </button>
+                    </div>
+
+                    <form className='space-y-4' onSubmit={(e) => submitHandler(e)}>
+                        <div className='relative'>
+                            <div className='absolute left-5 top-1/2 -translate-y-1/2 flex flex-col items-center gap-1'>
+                                <div className='w-2 h-2 rounded-full bg-primary animate-pulse' />
+                                <div className='w-[1px] h-10 bg-gradient-to-b from-primary to-transparent' />
+                            </div>
+                            <input
+                                onClick={() => {
+                                    setPanelOpen(true)
+                                    setActiveField('pickup')
+                                }}
+                                value={pickup}
+                                onChange={handlePickupChange}
+                                className='bg-white/5 border border-white/10 px-12 py-4 text-white rounded-2xl w-full focus:bg-white/10 focus:border-primary/50 transition-all placeholder:text-white/20'
+                                type="text"
+                                placeholder='Where from?'
+                            />
+                        </div>
+
+                        <div className='relative'>
+                            <div className='absolute left-5 top-1/2 -translate-y-1/2'>
+                                <i className="ri-map-pin-2-fill text-xl text-white/40"></i>
+                            </div>
+                            <input
+                                onClick={() => {
+                                    setPanelOpen(true)
+                                    setActiveField('destination')
+                                }}
+                                value={destination}
+                                onChange={handleDestinationChange}
+                                className='bg-white/5 border border-white/10 px-12 py-4 text-white rounded-2xl w-full focus:bg-white/10 focus:border-primary/50 transition-all placeholder:text-white/20'
+                                type="text"
+                                placeholder='Where to?'
+                            />
+                        </div>
                     </form>
+
                     <button
                         onClick={findTrip}
-                        className='bg-black text-white px-4 py-2 rounded-lg mt-3 w-full'>
-                        Find Trip
+                        className='btn-primary w-full py-4 text-lg mt-6 shadow-[0_10px_30px_rgba(255,215,0,0.2)]'
+                    >
+                        Search Rides
                     </button>
                 </div>
-                <div ref={panelRef} className='bg-white h-0'>
+            </div>
+
+            {/* Suggestions Panel */}
+            <div ref={panelRef} className='fixed inset-x-0 bottom-0 z-[110] bg-background/95 backdrop-blur-2xl h-0 overflow-hidden rounded-t-[3rem] border-t border-white/10'>
+                <div className='p-8'>
                     <LocationSearchPanel
                         suggestions={activeField === 'pickup' ? pickupSuggestions : destinationSuggestions}
                         setPanelOpen={setPanelOpen}
@@ -255,22 +284,25 @@ const Home = () => {
                     />
                 </div>
             </div>
-            <div ref={vehiclePanelRef} className='fixed w-full z-10 bottom-0 translate-y-full bg-white px-3 py-10 pt-12'>
+
+            {/* Bottom Sheets (Vehicles, Confirm, etc) */}
+            <div ref={vehiclePanelRef} className='fixed w-full z-[120] bottom-0 translate-y-full glass p-8 rounded-t-[3rem]'>
                 <VehiclePanel
                     selectVehicle={setVehicleType}
                     fare={fare} setConfirmRidePanel={setConfirmRidePanel} setVehiclePanel={setVehiclePanel} />
             </div>
-            <div ref={confirmRidePanelRef} className='fixed w-full z-10 bottom-0 translate-y-full bg-white px-3 py-6 pt-12'>
+
+            <div ref={confirmRidePanelRef} className='fixed w-full z-[130] bottom-0 translate-y-full glass p-8 rounded-t-[3rem]'>
                 <ConfirmRide
                     createRide={createRide}
                     pickup={pickup}
                     destination={destination}
                     fare={fare}
                     vehicleType={vehicleType}
-
                     setConfirmRidePanel={setConfirmRidePanel} setVehicleFound={setVehicleFound} />
             </div>
-            <div ref={vehicleFoundRef} className='fixed w-full z-10 bottom-0 translate-y-full bg-white px-3 py-6 pt-12'>
+
+            <div ref={vehicleFoundRef} className='fixed w-full z-[140] bottom-0 translate-y-full glass p-8 rounded-t-[3rem]'>
                 <LookingForDriver
                     createRide={createRide}
                     pickup={pickup}
@@ -279,7 +311,8 @@ const Home = () => {
                     vehicleType={vehicleType}
                     setVehicleFound={setVehicleFound} />
             </div>
-            <div ref={waitingForDriverRef} className='fixed w-full  z-10 bottom-0  bg-white px-3 py-6 pt-12'>
+
+            <div ref={waitingForDriverRef} className='fixed w-full z-[150] bottom-0 translate-y-[100%] glass p-8 rounded-t-[3rem]'>
                 <WaitingForDriver
                     ride={ride}
                     setVehicleFound={setVehicleFound}
